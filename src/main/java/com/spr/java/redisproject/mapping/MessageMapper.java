@@ -30,7 +30,7 @@ public class MessageMapper {
                 .id(message.getId())
                 .message(message.getMessage())
                 .creationDate(message.getCreationDate())
-                .isDeleted(message.isDeleted())
+                .deleted(message.isDeleted())
                 .build();
         if (!ObjectUtils.isEmpty(message.getAccount())){
             messageDto.setAccountId(message.getAccount().getId());

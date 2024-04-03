@@ -27,12 +27,6 @@ public class Message {
 
     private OffsetDateTime creationDate;
 
-//    @Reference
-//    private Topic topic;
-//
-//    @Indexed
-//    private String topicId;
-
     private boolean deleted;
 
 }

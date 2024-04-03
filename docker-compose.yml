@@ -9,4 +9,4 @@ services:
       - /path/to/local/redis.conf:/usr/local/etc/redis/redis.conf
     environment:
       - REDIS_PORT=6379
-      - REDIS_DATABASES=1
+      - REDIS_DATABASES=3

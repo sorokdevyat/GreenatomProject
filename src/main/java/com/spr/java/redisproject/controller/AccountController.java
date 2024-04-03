@@ -22,9 +22,5 @@ public class AccountController {
         AccountDto save = accountService.save(accountDto);
         return save;
     }
-    @DeleteMapping("/delete")
-    public void delete(@RequestParam String username){
-        accountService.deleteByUsername(username);
-    }
 
 }

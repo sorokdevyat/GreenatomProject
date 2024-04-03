@@ -20,5 +20,5 @@ public class MessageDto {
     private OffsetDateTime creationDate;
 
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
-    private boolean isDeleted;
+    private boolean deleted;
 }

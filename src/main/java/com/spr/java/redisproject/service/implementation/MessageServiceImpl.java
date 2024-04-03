@@ -21,6 +21,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+import org.springframework.util.ObjectUtils;
 
 import java.security.Security;
 import java.time.OffsetDateTime;
@@ -72,6 +73,7 @@ public class MessageServiceImpl implements MessageService {
         }
 
         message.setMessage(newMessage);
+
         Message save1 = messageRepository.save(message);
         topic.getTopicMessages().add(save1);
         topicRepository.save(topic);
@@ -85,9 +87,14 @@ public class MessageServiceImpl implements MessageService {
         Message message = messageRepository.findById(messageId)
                 .orElseThrow(() -> new NoSuchElementException(String.format("Message with id %s not found", messageId)));
 
-        if (!AccountRole.ADMIN.equals(account.getAccountRole()) || !Objects.equals(message.getAccount().getId(), account.getId())){
-            throw new MessageNotAttachedToUserException(String.format("Message was created by account with id = %s",message.getAccount().getId()));
+
+        if (!Objects.equals(message.getAccount().getId(),account.getId())){
+            if (!AccountRole.ADMIN.equals(account.getAccountRole())){
+                throw new MessageNotAttachedToUserException(String.format("Message was created by account with id = %s",message.getAccount().getId()));
+
+            }
         }
+
     }
 
     @Override
@@ -95,8 +102,11 @@ public class MessageServiceImpl implements MessageService {
         Message message = findById(messageId);
         allowAccess(messageId);
         Topic topic = topicRepository.findById(topicId).orElseThrow(NoSuchElementException::new);
-        topic.getTopicMessages().removeIf(m -> m.getId().equals(messageId));
         message.setDeleted(true);
+
+        topic.getTopicMessages().removeIf(m -> m.getId().equals(messageId));
+
+        topicRepository.save(topic);
         return messageMapper.fromMessageToDto(message);
     }
 

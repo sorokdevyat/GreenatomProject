@@ -42,7 +42,6 @@ public class TopicServiceImpl implements TopicService {
 
         List<Message> list = topicMessages.stream().skip(pageRequestDto.getSize()*pageRequestDto.getPage()).limit(pageRequestDto.getSize()).toList();
 
-
         return PageResponseDto.<Message>builder()
                 .page(pageRequestDto.getPage())
                 .total(topicMessages.size())
