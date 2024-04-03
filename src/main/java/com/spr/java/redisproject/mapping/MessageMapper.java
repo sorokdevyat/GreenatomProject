@@ -19,10 +19,6 @@ public class MessageMapper {
         if (!ObjectUtils.isEmpty(messageDto.getAccountId())){
             message.setAccount(Account.builder().id(messageDto.getAccountId()).build());
         }
-//        if (!ObjectUtils.isEmpty(messageDto.getTopic_id())){
-//            message.setTopic(Topic.builder().id(messageDto.getTopic_id()).build());
-//            message.setTopicId(message.getTopicId());
-//        }
         return message;
     }
     public MessageDto fromMessageToDto(Message message){
@@ -35,9 +31,7 @@ public class MessageMapper {
         if (!ObjectUtils.isEmpty(message.getAccount())){
             messageDto.setAccountId(message.getAccount().getId());
         }
-//        if (!ObjectUtils.isEmpty(message.getTopic())){
-//            messageDto.setTopic_id(message.getTopic().getId());
-//        }
+
         return messageDto;
     }
 }

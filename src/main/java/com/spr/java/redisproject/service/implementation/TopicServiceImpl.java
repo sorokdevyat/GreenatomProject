@@ -1,10 +1,8 @@
 package com.spr.java.redisproject.service.implementation;
 
-import com.spr.java.redisproject.dto.MessageDto;
 import com.spr.java.redisproject.dto.TopicDto;
 import com.spr.java.redisproject.dto.paging.PageRequestDto;
 import com.spr.java.redisproject.dto.paging.PageResponseDto;
-import com.spr.java.redisproject.mapping.MessageMapper;
 import com.spr.java.redisproject.mapping.TopicMapper;
 import com.spr.java.redisproject.model.Account;
 import com.spr.java.redisproject.model.Message;

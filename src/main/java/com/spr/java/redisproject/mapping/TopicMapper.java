@@ -39,7 +39,6 @@ public class TopicMapper {
         }
         if (!CollectionUtils.isEmpty(topic.getTopicMessages())){
             for (Message message : topic.getTopicMessages()){
-//                topicDto.setMessages_id(new ArrayList<>());
                 if (topicDto.getMessages_id() == null){
                     topicDto.setMessages_id(new ArrayList<>());
                 }
